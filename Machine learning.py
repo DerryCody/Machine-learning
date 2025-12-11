@@ -31,3 +31,22 @@ print("slope is:",m,"y-intercept is:",c)
 predy = m*x+c
 plt.plot(x,predy,linewidth = 5, color = 'Blue', linestyle = "solid", label = "line 2")
 plt.show()
+
+#Evaluating model
+#RMSE stands for root mean square error( do in reverse order)
+error = np.sqrt(np.mean((predy-y)**2))
+print(error)
+
+#Applying linear regression using library class
+from sklearn.linear_model import LinearRegression
+
+r1 = LinearRegression()
+x = x.reshape(-1,1)
+r1.fit(x,y)
+print(r1.coef_)
+print(r1.intercept_)
+y2y = r1.predict(x)
+print(y2y)
+from sklearn.metrics import root_mean_squared_error
+err = root_mean_squared_error(y2y,y)
+print(err)
